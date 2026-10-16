@@ -1,0 +1,32 @@
+import Gaffer
+import GafferScene
+import imath
+
+Gaffer.Metadata.registerValue( parent, "serialiser:milestoneVersion", 1, persistent=False )
+Gaffer.Metadata.registerValue( parent, "serialiser:majorVersion", 6, persistent=False )
+Gaffer.Metadata.registerValue( parent, "serialiser:minorVersion", 5, persistent=False )
+Gaffer.Metadata.registerValue( parent, "serialiser:patchVersion", 1, persistent=False )
+
+__children = {}
+
+__children["NameSwitch"] = Gaffer.NameSwitch( "NameSwitch" )
+parent.addChild( __children["NameSwitch"] )
+__children["NameSwitch"].setup( GafferScene.ScenePlug( "value", ) )
+__children["NameSwitch"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["NameSwitch"]["in"].resize( 3 )
+__children["Sphere"] = GafferScene.Sphere( "Sphere" )
+parent.addChild( __children["Sphere"] )
+__children["Sphere"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["NameSwitch"]["__index"].setInput( __children["NameSwitch"]["__outIndex"] )
+__children["NameSwitch"]["__uiPosition"].setValue( imath.V2f( -6.33333349, -3.08333325 ) )
+Gaffer.Metadata.registerValue( __children["NameSwitch"]["in"], 'noduleLayout:section', 'top' )
+__children["NameSwitch"]["in"][0]["name"].setValue( '*' )
+__children["NameSwitch"]["in"][1]["name"].setValue( 'a' )
+__children["NameSwitch"]["in"][1]["value"].setInput( __children["Sphere"]["out"] )
+__children["NameSwitch"]["in"][2]["name"].setValue( 'b' )
+__children["NameSwitch"]["in"][2]["value"].setInput( __children["Sphere"]["out"] )
+Gaffer.Metadata.registerValue( __children["NameSwitch"]["out"], 'noduleLayout:section', 'bottom' )
+__children["Sphere"]["__uiPosition"].setValue( imath.V2f( -7.83333349, 12.166667 ) )
+
+
+del __children

@@ -1,0 +1,29 @@
+import Gaffer
+import GafferScene
+import imath
+
+Gaffer.Metadata.registerValue( parent, "serialiser:milestoneVersion", 1, persistent=False )
+Gaffer.Metadata.registerValue( parent, "serialiser:majorVersion", 6, persistent=False )
+Gaffer.Metadata.registerValue( parent, "serialiser:minorVersion", 5, persistent=False )
+Gaffer.Metadata.registerValue( parent, "serialiser:patchVersion", 1, persistent=False )
+
+__children = {}
+
+__children["Plane"] = GafferScene.Plane( "Plane" )
+parent.addChild( __children["Plane"] )
+__children["Plane"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["NameSwitch"] = Gaffer.NameSwitch( "NameSwitch" )
+parent.addChild( __children["NameSwitch"] )
+__children["NameSwitch"].setup( GafferScene.ScenePlug( "value", ) )
+__children["NameSwitch"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["Plane"]["__uiPosition"].setValue( imath.V2f( 52.5533714, 13.7358456 ) )
+__children["NameSwitch"]["__index"].setInput( __children["NameSwitch"]["__outIndex"] )
+Gaffer.Metadata.registerValue( __children["NameSwitch"]["in"], 'noduleLayout:section', 'top' )
+__children["NameSwitch"]["in"][0]["name"].setValue( '*' )
+__children["NameSwitch"]["in"][0]["value"].setInput( __children["Plane"]["out"] )
+__children["NameSwitch"]["in"][1]["value"].setInput( __children["Plane"]["out"] )
+Gaffer.Metadata.registerValue( __children["NameSwitch"]["out"], 'noduleLayout:section', 'bottom' )
+__children["NameSwitch"]["__uiPosition"].setValue( imath.V2f( 52.8058319, 2.05231309 ) )
+
+
+del __children

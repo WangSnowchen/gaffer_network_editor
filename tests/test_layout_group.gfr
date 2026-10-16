@@ -1,0 +1,54 @@
+import Gaffer
+import GafferScene
+import imath
+
+Gaffer.Metadata.registerValue( parent, "serialiser:milestoneVersion", 1, persistent=False )
+Gaffer.Metadata.registerValue( parent, "serialiser:majorVersion", 6, persistent=False )
+Gaffer.Metadata.registerValue( parent, "serialiser:minorVersion", 5, persistent=False )
+Gaffer.Metadata.registerValue( parent, "serialiser:patchVersion", 1, persistent=False )
+
+__children = {}
+
+__children["Sphere"] = GafferScene.Sphere( "Sphere" )
+parent.addChild( __children["Sphere"] )
+__children["Sphere"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["Sphere1"] = GafferScene.Sphere( "Sphere1" )
+parent.addChild( __children["Sphere1"] )
+__children["Sphere1"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["Sphere2"] = GafferScene.Sphere( "Sphere2" )
+parent.addChild( __children["Sphere2"] )
+__children["Sphere2"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["Sphere3"] = GafferScene.Sphere( "Sphere3" )
+parent.addChild( __children["Sphere3"] )
+__children["Sphere3"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["Sphere4"] = GafferScene.Sphere( "Sphere4" )
+parent.addChild( __children["Sphere4"] )
+__children["Sphere4"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["Sphere5"] = GafferScene.Sphere( "Sphere5" )
+parent.addChild( __children["Sphere5"] )
+__children["Sphere5"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["Group"] = GafferScene.Group( "Group" )
+parent.addChild( __children["Group"] )
+__children["Group"]["in"].resize( 7 )
+__children["Group"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["Transform"] = GafferScene.Transform( "Transform" )
+parent.addChild( __children["Transform"] )
+__children["Transform"].addChild( Gaffer.V2fPlug( "__uiPosition", defaultValue = imath.V2f( 0, 0 ), flags = Gaffer.Plug.Flags.Default | Gaffer.Plug.Flags.Dynamic, ) )
+__children["Sphere"]["__uiPosition"].setValue( imath.V2f( -14.8947859, 6.54794025 ) )
+__children["Sphere1"]["__uiPosition"].setValue( imath.V2f( -0.894785881, 6.54794025 ) )
+__children["Sphere2"]["__uiPosition"].setValue( imath.V2f( 13.1052141, 6.54794025 ) )
+__children["Sphere3"]["__uiPosition"].setValue( imath.V2f( 55.1052132, 6.54794025 ) )
+__children["Sphere4"]["__uiPosition"].setValue( imath.V2f( 27.1052132, 6.54794025 ) )
+__children["Sphere5"]["__uiPosition"].setValue( imath.V2f( 41.1052132, 6.54794025 ) )
+__children["Group"]["in"][0].setInput( __children["Sphere"]["out"] )
+__children["Group"]["in"][1].setInput( __children["Sphere1"]["out"] )
+__children["Group"]["in"][2].setInput( __children["Sphere2"]["out"] )
+__children["Group"]["in"][3].setInput( __children["Sphere4"]["out"] )
+__children["Group"]["in"][4].setInput( __children["Sphere5"]["out"] )
+__children["Group"]["in"][5].setInput( __children["Sphere3"]["out"] )
+__children["Group"]["__uiPosition"].setValue( imath.V2f( 20.2450466, -5.02417421 ) )
+__children["Transform"]["in"].setInput( __children["Group"]["out"] )
+__children["Transform"]["__uiPosition"].setValue( imath.V2f( 20.2450466, -14.1882372 ) )
+
+
+del __children
